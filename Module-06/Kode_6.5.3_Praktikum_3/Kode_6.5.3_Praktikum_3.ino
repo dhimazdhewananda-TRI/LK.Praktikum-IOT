@@ -13,12 +13,12 @@
 #include <DHT.h>
 
 // 1. Kredensial Wi-Fi (Pastikan Laptop dan ESP8266 berada di Jaringan yang Sama!)
-const char* ssid     = "dhewa";
-const char* password = "88888888";
+const char* ssid     = "KOST ASSALAM";
+const char* password = "hitamputih";
 
 // 2. Konfigurasi Broker MQTT Lokal
 // Ganti dengan Alamat IPv4 Laptop Anda yang didapat dari perintah 'ipconfig'!
-const char* mqttServer = "172.20.10.3"; 
+const char* mqttServer = "192.168.1.36"; 
 const int   mqttPort   = 1883;
 
 // 3. Konfigurasi Identitas Simpul & Topik
@@ -91,8 +91,9 @@ void reconnectMQTT() {
     Serial.print(mqttServer);
     Serial.print(")...");
 
-    if (client.connect(clientId)) {
-      Serial.println(" Terhubung!");
+    // Menambahkan Kredensial Autentikasi Username dan Password di sini:
+    if (client.connect(clientId, "admin", "rahasia123")) {
+      Serial.println(" Terhubung dengan Autentikasi Sah!");
       // Segera daftarkan subskripsi topik kendali
       client.subscribe(topicSubCmd);
       Serial.printf("[MQTT] Berlangganan ke topik: %s\n", topicSubCmd);
